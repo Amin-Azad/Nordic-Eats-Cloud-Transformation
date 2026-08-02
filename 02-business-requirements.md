@@ -2,7 +2,7 @@
 
 | Item | Value |
 |------|-------|
-| Project | Cloud Transformation Case Study |
+| Project | Nordic shopping Cloud Transformation |
 | Company | Nordic Shopping |
 | Document | Business Requirements |
 | Author | Amin Azad |
