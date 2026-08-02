@@ -1,215 +1,311 @@
-# Business Case: Nordic Eats Cloud Transformation
+# Business Case
 
-| Document field | Value |
-| --- | --- |
-| Project | Nordic Eats Cloud Transformation |
-| Client | Nordic Eats (fictional company) |
-| Location | Copenhagen, Denmark |
-| Document | Business Case |
-| Status | Draft for stakeholder approval |
-| Version | 1.0 |
-| Date | 2 August 2026 |
+| **Document** | Business Case |
+|--------------|---------------|
+| **Project** | Nordic Shopping Cloud Transformation |
+| **Company** | Nordic Shopping |
+| **Author** | Amin Azad |
+| **Version** | 1.0 |
+| **Status** | Draft |
+| **Date** | August 2026 |
 
-## 1. Executive Summary
+---
 
-Nordic Eats is a Copenhagen-based digital-commerce startup with 25 employees and approximately 40,000 monthly users. Its customer website, mobile application, internal administration portal, SQL Server database, and shared files currently depend on a small on-premises server environment managed by one IT administrator.
+# 1. Executive Summary
 
-The current environment limits the company's ability to grow. Application deployments are manual, monitoring is limited, recovery depends on local infrastructure, and there is no tested disaster-recovery capability. A hardware failure, cyber incident, or office outage could interrupt customer services and cause data loss.
+Nordic Shopping is a growing Danish e-commerce startup that has reached a stage where its current on-premises infrastructure is becoming increasingly difficult to scale and maintain. Over the last few years, the company has experienced consistent growth in customers, vendors, and online transactions, making the existing infrastructure a potential business risk.
 
-This project proposes a phased migration to Microsoft Azure using managed cloud services wherever practical. The transformation will improve reliability, security, scalability, deployment speed, monitoring, backup, and disaster recovery while keeping the target Azure operating cost at approximately **5,000 DKK per month**. It will also introduce a controlled AI-powered customer-support capability to reduce repetitive support work and improve response times.
+The company has decided to modernize its platform by migrating its core applications and infrastructure to Microsoft Azure. Rather than simply moving servers into the cloud, the objective is to build a secure, scalable, highly available, and cost-efficient cloud platform that can support future business growth.
 
-## 2. Company Background
+The target architecture will use Azure managed services wherever practical to reduce operational overhead while improving security, deployment automation, monitoring, and disaster recovery.
 
-Nordic Eats provides food-ordering and related digital services through:
+The project has an approved Azure operational budget with a maximum limit of **DKK 10,000 per month**. The proposed architecture is expected to operate at approximately **DKK 6,000–7,000 per month** during normal business operations, leaving sufficient headroom for seasonal traffic and future growth.
 
-- A customer-facing website
-- A mobile application
-- An internal administration portal
-- A SQL Server database containing application and operational data
-- Shared file storage used by employees and business processes
+---
 
-The company operates from one Copenhagen office. Its technology environment is maintained by one IT administrator, with development and operational support shared across a small team.
+# 2. Company Overview
 
-## 3. Current Business Problem
+## About Nordic Shopping
 
-The on-premises platform was sufficient during the company's early stage, but it now creates material business risks.
+Nordic Shopping is a Copenhagen-based e-commerce marketplace founded in 2022. The company connects customers with local and international vendors through a modern online shopping platform.
 
-| Problem | Business impact |
-| --- | --- |
-| Single on-premises environment | Hardware or office failure can interrupt all digital services. |
-| Limited capacity and scalability | Traffic growth or demand peaks may reduce performance and customer satisfaction. |
-| Manual deployments | Releases are slow, inconsistent, and more likely to introduce errors. |
-| Limited monitoring and alerting | Problems may be discovered by customers before the IT team. |
-| Inadequate backup and no tested DR | A major failure could cause extended downtime or permanent data loss. |
-| One IT administrator | Routine maintenance creates an operational bottleneck and key-person dependency. |
-| Weak security visibility | Threats, misconfigurations, and suspicious activity are difficult to detect centrally. |
-| Hardware-led cost model | Capacity must be purchased in advance, even when it is not continuously required. |
+Customers can browse products, compare prices, place orders, complete payments, and track deliveries using either the company website or mobile application.
 
-## 4. Case for Change
+Vendors manage products, inventory, pricing, promotions, and customer orders through dedicated vendor applications, while internal employees use an administration portal for customer support, finance, reporting, and operational management.
 
-Maintaining the current environment would avoid an immediate migration effort, but it would leave the main risks unresolved and require further hardware investment as the company grows. Expanding the on-premises platform would also increase maintenance responsibilities for an already limited IT team.
+Although the company has grown steadily, its infrastructure has remained largely unchanged since the business was launched.
 
-A cloud transformation offers a better strategic fit because Nordic Eats needs flexible capacity, dependable customer services, faster releases, stronger recovery, and lower infrastructure-management effort. Azure also supports infrastructure as code, automated deployment, centralized security, monitoring, managed data services, and AI capabilities within one platform.
+### Company Profile
 
-## 5. Options Considered
+| Item | Details |
+|------|---------|
+| Company | Nordic Shopping |
+| Industry | E-commerce Marketplace |
+| Headquarters | Copenhagen, Denmark |
+| Founded | 2022 |
+| Employees | 35 |
+| Registered Customers | ~40,000 |
+| Active Vendors | ~150 |
+| Countries | Denmark |
 
-| Option | Advantages | Disadvantages | Decision |
-| --- | --- | --- | --- |
-| Continue on-premises | No immediate migration; minimal short-term change | Existing reliability, recovery, scalability, and staffing risks remain | Rejected |
-| Expand on-premises | Retains current operating model | Requires capital investment and more maintenance; does not solve agility concerns | Rejected |
-| Lift and shift all servers to Azure VMs | Faster initial migration; fewer application changes | Preserves server-management overhead and may exceed the cost target | Not preferred |
-| Phased Azure migration using managed services | Reduces administration, supports scaling and automation, improves resilience | Requires planning, skills, and controlled migration | Recommended |
+---
 
-## 6. Proposed Transformation
+# 3. Business Applications
 
-The recommended approach is a phased migration from the on-premises environment to Azure. The programme will:
+The current platform consists of several business-critical applications.
 
-- Establish a governed Azure foundation with identity, access control, networking, tagging, policy, and budget controls.
-- Move the customer application and administration portal to an appropriate managed application platform.
-- Migrate SQL Server data to a managed Azure database service after compatibility and sizing assessment.
-- Move shared and application files to secure Azure storage.
-- Implement automated infrastructure deployment with Bicep.
-- Implement application CI/CD through GitHub Actions.
-- Introduce centralized logs, metrics, dashboards, alerts, and operational runbooks.
-- Provide backup, restore, and tested disaster-recovery procedures.
-- Add an AI-powered customer-support assistant with human escalation and controlled data access.
-- Apply continuous cost monitoring and optimisation to remain close to the monthly target.
+| Application | Primary Users | Purpose |
+|-------------|---------------|---------|
+| Nordic Shopping Web | Customers | Browse products and place orders |
+| Nordic Shopping Mobile App | Customers | Shopping, payments and order tracking |
+| Nordic Vendor Portal | Vendors | Product, inventory and order management |
+| Nordic Vendor Mobile App | Vendors | Order notifications and inventory updates |
+| Nordic Admin Portal | Employees | Customer support, finance and operations |
+| Nordic API Platform | Internal Services | Shared business logic and APIs |
 
-Detailed Azure services and architecture choices will be made in later design phases. This business case approves the direction and outcomes, not a final technical design.
+All applications currently depend on the same backend infrastructure and database environment.
 
-## 7. Business Objectives
+---
 
-1. Improve the reliability and availability of customer-facing services.
-2. Support growth beyond 40,000 monthly users without large upfront hardware purchases.
-3. Reduce deployment lead time and release risk through automation.
-4. Improve security, auditability, and protection of customer and business data.
-5. Establish recoverable backups and a tested disaster-recovery capability.
-6. Give the small IT team centralized operational visibility and actionable alerts.
-7. Keep normal Azure operating expenditure at approximately 5,000 DKK per month.
-8. Improve customer-support response time through a safe, limited AI capability.
+# 4. Business Growth
 
-## 8. Expected Benefits
+Nordic Shopping expects significant growth over the next three years.
 
-### 8.1 Quantifiable Benefits
+The company plans to expand into Sweden and Norway while increasing the number of customers, vendors, and daily transactions.
 
-- At least 99.9% monthly availability for the customer-facing production service, excluding approved maintenance.
-- Standard application releases completed through an automated pipeline in 15 minutes or less.
-- Critical service alerts generated within 5 minutes of a detected threshold breach.
-- Recovery point objective (RPO) of 15 minutes or better for critical transactional data.
-- Recovery time objective (RTO) of 4 hours or better for the critical customer service.
-- Monthly Azure cost maintained within 5,000 DKK under the agreed baseline workload, with alerts before overspend.
-- At least 30% of eligible repetitive support enquiries handled by the AI assistant after controlled rollout.
+| Business Metric | Current | Target (3 Years) |
+|-----------------|--------:|-----------------:|
+| Employees | 35 | 80 |
+| Registered Customers | 40,000 | 250,000 |
+| Active Vendors | 150 | 800 |
+| Daily Orders | 600 | 5,000 |
+| Countries | Denmark | Denmark, Sweden & Norway |
+| Application Releases | Monthly | Weekly / On Demand |
 
-### 8.2 Qualitative Benefits
+The current infrastructure is not designed to support this level of growth efficiently.
 
-- Reduced dependence on office hardware and a single administrator.
-- Faster and more consistent software delivery.
-- Better customer trust through improved uptime and recovery readiness.
-- Stronger visibility into application health, security events, and spending.
-- A repeatable platform that can support future products and geographic expansion.
+---
 
-## 9. Financial Considerations
+# 5. Current Situation
 
-The target steady-state Azure operating budget is **approximately 5,000 DKK per month**, equivalent to approximately **60,000 DKK per year**. This target covers the production cloud platform at the agreed baseline usage and is subject to validation during detailed architecture and cost-estimation work.
+Nordic Shopping currently operates from a small on-premises server environment.
 
-The following principles will control spending:
+The environment consists of:
 
-- Prefer appropriately sized managed and platform services over continuously running virtual machines.
-- Scale services according to demand where technically and financially suitable.
-- Apply budgets, tags, cost allocation, and alert thresholds.
-- Use retention and storage lifecycle policies.
-- Separate essential production controls from optional enhancements.
-- Review forecast and actual cost monthly.
-- Set explicit consumption limits for the AI capability.
+- Windows Server hosting the web applications
+- Microsoft SQL Server
+- Shared file storage
+- Backup server
+- Active Directory
+- Firewall and Internet gateway
 
-One-time migration effort, staff time, training, domain registration, end-user devices, and third-party licence costs are not included in the 5,000 DKK monthly Azure target unless later cost analysis explicitly includes them.
+While this infrastructure has supported the company during its early years, it now introduces several operational and business risks.
 
-## 10. Scope
+### Current Challenges
 
-### 10.1 In Scope
+### Scalability
 
-- Discovery and assessment of the current environment
-- Azure cloud strategy and target architecture
-- Azure governance, identity, network, and security foundation
-- Migration of the website, mobile application backend, and administration portal
-- SQL Server assessment and database migration
-- Shared and application file migration
-- Backup, restore, high availability, and disaster recovery
-- Infrastructure as code using Bicep
+Scaling the application requires purchasing and configuring additional physical hardware. This process is expensive, time-consuming, and limits the company's ability to respond quickly to increasing customer demand.
+
+### Availability
+
+All production workloads are hosted in a single location.
+
+A major hardware failure, power outage, or network disruption could result in extended downtime for customers and vendors.
+
+### Manual Deployments
+
+Application deployments are largely manual, increasing the likelihood of configuration errors, inconsistent environments, and production outages.
+
+### Limited Monitoring
+
+Application health, infrastructure metrics, and performance data are not centrally monitored, making troubleshooting slower and more reactive.
+
+### Disaster Recovery
+
+Although backups exist, there is no fully tested disaster recovery process or secondary production environment.
+
+### Security
+
+The current environment relies heavily on manually managed credentials and traditional network controls. The company requires stronger identity management, secure secret storage, improved access control, and centralized governance.
+
+### Operational Overhead
+
+The internal IT team spends considerable time maintaining infrastructure rather than delivering new business features.
+
+---
+
+# 6. Business Objectives
+
+The cloud transformation project has the following objectives:
+
+- Improve platform availability.
+- Support future business growth.
+- Reduce infrastructure management effort.
+- Improve deployment reliability.
+- Strengthen security.
+- Introduce centralized monitoring.
+- Improve backup and disaster recovery.
+- Control long-term operational costs.
+- Build a cloud platform that can evolve without major redesign.
+
+---
+
+# 7. Proposed Cloud Solution
+
+Nordic Shopping will migrate its production platform to Microsoft Azure using managed Platform as a Service (PaaS) offerings wherever practical.
+
+The proposed Azure platform includes:
+
+| Area | Azure Service |
+|------|---------------|
+| Application Hosting | Azure App Service |
+| Database | Azure SQL Database |
+| Storage | Azure Storage Account |
+| Global Routing | Azure Front Door |
+| Networking | Azure Virtual Network |
+| Secure Connectivity | Private Endpoints & Private DNS |
+| Secrets | Azure Key Vault |
+| Identity | Microsoft Entra ID & Managed Identity |
+| Monitoring | Azure Monitor & Application Insights |
+| Centralized Logging | Log Analytics Workspace |
+| Infrastructure as Code | Bicep |
+| CI/CD | GitHub Actions |
+| Governance | Azure Policy |
+| Cost Management | Azure Budgets & Alerts |
+
+The primary production environment will be hosted in **West Europe**, while a secondary application environment will be deployed in **Sweden Central** to support disaster recovery.
+
+---
+
+# 8. Business Continuity Requirements
+
+Because the company depends entirely on online sales, service continuity is a key business requirement.
+
+| Requirement | Target |
+|------------|--------|
+| Availability | 99.9% or higher |
+| Recovery Time Objective (RTO) | ≤ 60 minutes |
+| Recovery Point Objective (RPO) | ≤ 15 minutes |
+| Planned Maintenance | Near-zero customer impact using deployment slots |
+| Disaster Recovery Region | Sweden Central |
+
+These targets provide a practical balance between resilience and operational cost for a company of this size.
+
+---
+
+# 9. Security Objectives
+
+The new platform will adopt a security-first approach using Azure native capabilities.
+
+Key objectives include:
+
+- Microsoft Entra ID authentication
+- Role-Based Access Control (RBAC)
+- Managed Identities
+- Azure Key Vault
+- Private Endpoints
+- Encryption at rest and in transit
+- Azure Policy
+- Centralized logging
+- Backup protection
+- Secure CI/CD pipeline
+
+These controls reduce operational risk while protecting customer and business data.
+
+---
+
+# 10. AI Operations Assistant
+
+To improve operational efficiency, the project will include an AI-powered Operations Assistant.
+
+The assistant will use data from Azure Monitor, Application Insights, Log Analytics, and GitHub Actions to support the IT team by:
+
+- Summarizing incidents
+- Explaining deployment failures
+- Analysing application exceptions
+- Recommending troubleshooting steps
+- Producing daily operational summaries
+- Highlighting unusual infrastructure behaviour
+
+The AI assistant is intended to improve productivity rather than replace existing monitoring or operational processes.
+
+---
+
+# 11. Budget Considerations
+
+The company has approved a maximum Azure operational budget of:
+
+> **DKK 10,000 per month**
+
+The proposed architecture is expected to operate between **DKK 6,000 and 7,000 per month** under normal business conditions.
+
+Maintaining operational costs below the approved limit will be achieved by:
+
+- Using managed Azure services
+- Right-sizing compute resources
+- Controlled autoscaling
+- Storage lifecycle policies
+- Budget alerts
+- Cost monitoring
+- Regular architecture reviews
+
+The remaining budget provides capacity for seasonal demand, customer growth, and future platform expansion without immediate redesign.
+
+---
+
+# 12. Project Scope
+
+## In Scope
+
+- Azure cloud migration
+- Application hosting
+- Azure SQL Database
+- Azure Storage
+- Azure Front Door
+- Virtual Network
+- Private Endpoints
+- Azure Key Vault
+- Monitoring and logging
 - CI/CD using GitHub Actions
-- Monitoring, logging, alerting, dashboards, and runbooks
-- Cost estimation, budgeting, tagging, and optimisation
-- AI-powered customer-support capability with human escalation
-- Documentation, testing, knowledge transfer, and a portfolio demonstration
+- Infrastructure as Code using Bicep
+- Backup and disaster recovery
+- Cost management
+- Security implementation
 
-### 10.2 Out of Scope
+## Out of Scope
 
-- Replacing the entire customer-facing application with a new product
-- Redesigning the mobile application's user interface
-- Replacing employee laptops, office Wi-Fi, or unrelated end-user systems
-- A 24/7 staffed security operations centre
-- Large-scale data science or model training
-- Migration of unspecified third-party SaaS platforms
-- Production payment-provider replacement
+- Complete application redesign
+- Enterprise landing zone
+- Active-active database architecture
+- Migration of unrelated internal systems
+- End-user device replacement
 
-Any out-of-scope item requires separate approval, cost analysis, and planning.
+---
 
-## 11. Key Assumptions and Constraints
+# 13. Success Criteria
 
-### Assumptions
+The project will be considered successful when:
 
-- Nordic Eats owns or can modify the applications and deployment process.
-- Required application source code, database access, and system documentation will be available.
-- The current application can be migrated or minimally modernised without a complete rewrite.
-- Workload and data volumes are compatible with the target budget after right-sizing.
-- Stakeholders will participate in discovery, testing, migration approval, and recovery exercises.
-- Personal and business data will be processed in accordance with applicable GDPR obligations.
+- The platform is fully operational in Azure.
+- Infrastructure is deployed using Bicep.
+- CI/CD pipelines automate deployments.
+- Production releases use deployment slots.
+- Customer-facing applications achieve at least 99.9% availability.
+- Disaster recovery objectives (RTO and RPO) are met.
+- Security controls are implemented according to design.
+- Centralized monitoring and alerting are operational.
+- Monthly Azure costs remain below **DKK 10,000**.
+- The platform can scale to support projected business growth without major architectural changes.
 
-### Constraints
+---
 
-- Target Azure operating cost is approximately 5,000 DKK per month.
-- The company has one IT administrator and limited operational capacity.
-- Customer disruption during migration must be minimised.
-- Security, backup, monitoring, and recovery controls cannot be deferred from the production release.
-- Technical choices should avoid unnecessary operational complexity.
+# 14. Conclusion
 
-## 12. Risks and Mitigations
+Nordic Shopping has reached a stage where continued business growth requires a more modern and resilient technology platform.
 
-| Risk | Likelihood | Impact | Planned mitigation |
-| --- | --- | --- | --- |
-| Cost exceeds the monthly target | Medium | High | Validate pricing, right-size services, use budgets and alerts, and phase optional capabilities. |
-| Application is incompatible with managed services | Medium | High | Perform dependency and compatibility assessment; use a staged migration path. |
-| Migration causes customer downtime | Medium | High | Use rehearsals, rollback plans, staged cutover, and approved maintenance windows. |
-| Data is lost or corrupted during migration | Low | Critical | Take validated backups, reconcile data, test restore, and retain rollback copies. |
-| Team lacks required Azure skills | Medium | Medium | Use documented automation, training, runbooks, and knowledge transfer. |
-| Security is misconfigured | Medium | High | Apply least privilege, policy, code review, security testing, and centralized logging. |
-| AI produces inaccurate responses or exposes data | Medium | High | Restrict knowledge sources, avoid unnecessary personal data, log interactions, provide human escalation, and test before release. |
-| Vendor dependency increases | Medium | Medium | Use documented interfaces, portable data formats, source-controlled infrastructure, and an exit plan. |
+Migrating to Microsoft Azure will improve availability, scalability, security, operational efficiency, and deployment reliability while remaining within the approved budget.
 
-## 13. Success Criteria
+The proposed architecture balances current business needs with future growth, allowing the company to expand into new markets without requiring a complete infrastructure redesign.
 
-The transformation will be considered successful when:
-
-- The agreed workloads operate in Azure and pass functional and business acceptance testing.
-- Production availability meets the 99.9% monthly target during the agreed measurement period.
-- Backup restoration and disaster-recovery exercises meet the stated RPO and RTO.
-- Infrastructure and normal application releases are deployed through reviewed automation.
-- Monitoring, security logging, alerting, ownership, and response procedures are operational.
-- The forecast steady-state Azure cost is at or near 5,000 DKK per month for baseline usage.
-- Critical data is protected in transit and at rest, and access follows least privilege.
-- The AI support capability passes accuracy, privacy, escalation, and cost-control acceptance tests.
-- The IT administrator receives usable documentation, dashboards, and operational runbooks.
-
-## 14. Recommendation
-
-Approve the phased Azure cloud transformation and proceed to current-state assessment, requirements validation, architecture design, migration planning, and detailed cost estimation. Approval is conditional on maintaining the cost-control principles and validating technical feasibility before production migration.
-
-## 15. Approval
-
-| Role | Name | Decision | Date |
-| --- | --- | --- | --- |
-| Executive Sponsor | To be assigned | Pending | — |
-| Product Owner | To be assigned | Pending | — |
-| IT Administrator | To be assigned | Pending | — |
-| Project Lead | Amin Azad | Pending | — |
-
+This business case forms the foundation for the remaining project documents, which will define the business requirements, current environment assessment, target architecture, migration strategy, cost analysis, and security assessment.
