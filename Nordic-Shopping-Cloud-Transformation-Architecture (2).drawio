@@ -1,0 +1,527 @@
+<mxfile host="app.diagrams.net" agent="Codex" compressed="false">
+  <diagram id="nshop-overview" name="Target Architecture">
+    <mxGraphModel dx="3941" dy="1233" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=24;fontStyle=1;fontColor=#102A43;" value="NORDIC SHOPPING CLOUD TRANSFORMATION" vertex="1">
+          <mxGeometry height="35" width="900" x="40" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontColor=#486581;" value="Production Target Architecture • Active–Passive • West Europe / Sweden Central • Release 1" vertex="1">
+          <mxGeometry height="25" width="950" x="40" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="badge" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6FFFA;strokeColor=#319795;fontColor=#234E52;fontStyle=1;fontSize=11;" value="TECHNICAL SOURCE OF TRUTH" vertex="1">
+          <mxGeometry height="36" width="260" x="1600" y="25" as="geometry" />
+        </mxCell>
+        <mxCell id="actors" parent="1" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#F7FAFC;strokeColor=#CBD5E0;fontColor=#334E68;fontStyle=1;horizontal=1;labelBorderColor=default;align=center;" value="USERS &amp;amp; IDENTITY" vertex="1">
+          <mxGeometry height="425" width="240" x="40" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="customer" parent="actors" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF8FF;strokeColor=#4299E1;fontColor=#1A365D;fontSize=12;" value="Customers&#xa;Web &amp; mobile clients" vertex="1">
+          <mxGeometry height="55" width="190" x="25" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="vendor" parent="actors" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAF5FF;strokeColor=#9F7AEA;fontColor=#44337A;fontSize=12;" value="Vendors&#xa;Vendor Portal" vertex="1">
+          <mxGeometry height="55" width="190" x="25" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="employee" parent="actors" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF5F5;strokeColor=#E53E3E;fontColor=#742A2A;fontSize=12;" value="Employees / Operations&#xa;Admin Portal • managed device" vertex="1">
+          <mxGeometry height="60" width="190" x="25" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="identity" parent="actors" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBEA;strokeColor=#D69E2E;fontColor=#744210;fontStyle=1;fontSize=11;align=center;" value="&lt;div style=&quot;&quot;&gt;&lt;span style=&quot;font-size: 9px; background-color: transparent; color: light-dark(rgb(116, 66, 16), rgb(211, 168, 125));&quot;&gt;Microsoft Entra&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size: 9px; background-color: transparent; color: light-dark(rgb(116, 66, 16), rgb(211, 168, 125));&quot;&gt;Customer External ID tenant&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size: 9px; background-color: transparent; color: light-dark(rgb(116, 66, 16), rgb(211, 168, 125));&quot;&gt;Workforce tenant: Employees + Vendor B2B&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size: 9px; background-color: transparent; color: light-dark(rgb(116, 66, 16), rgb(211, 168, 125));&quot;&gt;MFA • Conditional Access • Application roles&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="205" x="25" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="Lem40g0zCwCAQnNen0jZ-29" edge="1" parent="actors" style="endArrow=classic;html=1;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;curved=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="250" y="195" />
+              <mxPoint x="250" y="165" />
+            </Array>
+            <mxPoint x="230" y="195" as="sourcePoint" />
+            <mxPoint x="300" y="165" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge" parent="1" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#F7FAFC;strokeColor=#CBD5E0;fontColor=#334E68;fontStyle=1;horizontal=1;" value="GLOBAL EDGE &amp; PUBLIC INGRESS" vertex="1">
+          <mxGeometry height="425" width="270" x="320" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="dns" parent="edge" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF2F7;strokeColor=#718096;fontColor=#2D3748;fontSize=11;" value="&lt;div&gt;&lt;b&gt;Azure DNS / Public DNS&lt;/b&gt;&lt;/div&gt;&lt;div&gt;Front Door-managed TLS certificates&lt;/div&gt;" vertex="1">
+          <mxGeometry height="45" width="220" x="25" y="55" as="geometry" />
+        </mxCell>
+        <mxCell id="afd" parent="edge" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6F6FF;strokeColor=#0078D4;strokeWidth=2;fontColor=#003B5C;fontStyle=1;fontSize=12;" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;Azure Front Door Standard&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;4 routes • 4 origin groups&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Primary and DR origins&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-weight: normal;&quot;&gt;Health probes • priority-based failover&lt;/span&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="220" x="25" y="125" as="geometry" />
+        </mxCell>
+        <mxCell id="waf" parent="edge" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF5F5;strokeColor=#C53030;fontColor=#742A2A;fontSize=11;" value="Front Door WAF&#xa;custom block + rate-limit rules&#xa;Detection → Prevention" vertex="1">
+          <mxGeometry height="70" width="220" x="25" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="originlock" parent="edge" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFF0;strokeColor=#B7791F;fontColor=#744210;fontSize=11;" value="Origin lock-down&#xa;Service tag + X-Azure-FDID&#xa;Direct app access denied" vertex="1">
+          <mxGeometry height="65" width="220" x="25" y="325" as="geometry" />
+        </mxCell>
+        <mxCell id="Lem40g0zCwCAQnNen0jZ-24" edge="1" parent="edge" style="endArrow=classic;html=1;rounded=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;dashed=1;strokeWidth=2;curved=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="10" y="271" />
+              <mxPoint x="10" y="181" />
+            </Array>
+            <mxPoint x="25" y="271" as="sourcePoint" />
+            <mxPoint x="25" y="181" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Lem40g0zCwCAQnNen0jZ-25" connectable="0" parent="Lem40g0zCwCAQnNen0jZ-24" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;span style=&quot;font-size: 6px; text-align: right;&quot;&gt;Associated WAF Policy&amp;nbsp;&lt;/span&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.1167" y="-1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Lem40g0zCwCAQnNen0jZ-28" edge="1" parent="edge" style="endArrow=classic;html=1;rounded=1;strokeWidth=2;curved=0;dashed=1;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="270" y="355" />
+              <mxPoint x="270" y="245" />
+            </Array>
+            <mxPoint x="245" y="355" as="sourcePoint" />
+            <mxPoint x="350" y="245" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="weu" parent="1" style="swimlane;html=1;startSize=34;rounded=1;fillColor=#F0FFF4;strokeColor=#38A169;strokeWidth=2;fontColor=#22543D;fontStyle=1;horizontal=1;" value="WEST EUROPE — ACTIVE REGION" vertex="1">
+          <mxGeometry height="705" width="590" x="630" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="weuvnet" parent="weu" style="swimlane;html=1;startSize=28;rounded=1;fillColor=#F7FFFA;strokeColor=#68D391;fontColor=#276749;fontStyle=1;horizontal=1;" value="vnet-nshop-prod-weu  10.10.0.0/16" vertex="1">
+          <mxGeometry height="575" width="550" x="20" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="weuapps" parent="weuvnet" style="swimlane;html=1;startSize=25;rounded=1;fillColor=#EBF8FF;strokeColor=#63B3ED;fontColor=#2A4365;fontStyle=1;horizontal=1;" value="App integration subnet  10.10.1.0/24" vertex="1">
+          <mxGeometry height="285" width="240" x="20" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="weuplan" parent="weuapps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6EFFF;strokeColor=#0078D4;strokeWidth=2;fontColor=#003B5C;fontStyle=1;fontSize=11;" value="Linux App Service Plan (compute only)&#xa;P1v3 • 2 active workers&#xa;autoscale max 4" vertex="1">
+          <mxGeometry height="65" width="200" x="20" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="webweu" parent="weuapps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4299E1;fontColor=#1A365D;fontSize=11;" value="Customer Web" vertex="1">
+          <mxGeometry height="45" width="92" x="20" y="125" as="geometry" />
+        </mxCell>
+        <mxCell id="apiweu" parent="weuapps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2B6CB0;strokeWidth=2;fontColor=#1A365D;fontStyle=1;fontSize=11;" value="Nordic API&#xa;Node.js 24 LTS" vertex="1">
+          <mxGeometry height="45" width="92" x="128" y="125" as="geometry" />
+        </mxCell>
+        <mxCell id="vendorweu" parent="weuapps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#805AD5;fontColor=#44337A;fontSize=11;" value="Vendor Portal" vertex="1">
+          <mxGeometry height="45" width="92" x="20" y="187" as="geometry" />
+        </mxCell>
+        <mxCell id="adminweu" parent="weuapps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E53E3E;fontColor=#742A2A;fontSize=11;" value="Admin Portal" vertex="1">
+          <mxGeometry height="45" width="92" x="128" y="187" as="geometry" />
+        </mxCell>
+        <mxCell id="miweu" parent="weuapps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6FFFA;strokeColor=#319795;fontColor=#234E52;fontSize=10;" value="System-assigned managed identity per app" vertex="1">
+          <mxGeometry height="28" width="200" x="20" y="247" as="geometry" />
+        </mxCell>
+        <mxCell id="Lem40g0zCwCAQnNen0jZ-36" edge="1" parent="weuapps" style="endArrow=classic;html=1;rounded=1;curved=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="120" y="205" />
+              <mxPoint x="120" y="165" />
+            </Array>
+            <mxPoint x="112" y="205" as="sourcePoint" />
+            <mxPoint x="130" y="165" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="weudata" parent="weuvnet" style="swimlane;html=1;startSize=25;rounded=1;fillColor=#FAF5FF;strokeColor=#B794F4;fontColor=#44337A;fontStyle=1;horizontal=1;" value="Private endpoint subnet  10.10.2.0/24" vertex="1">
+          <mxGeometry height="285" width="250" x="280" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="sqlweu" parent="weudata" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E9D8FD;strokeColor=#805AD5;strokeWidth=2;fontColor=#44337A;fontStyle=1;fontSize=11;" value="Azure SQL Database&#xa;GP • provisioned 2 vCore&#xa;private endpoint" vertex="1">
+          <mxGeometry height="62" width="210" x="20" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="blobweu" parent="weudata" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6FFFA;strokeColor=#319795;fontColor=#234E52;fontSize=10;" value="Blob Storage (LRS)&#xa;quarantine → malware scan → approved&#xa;private endpoint" vertex="1">
+          <mxGeometry height="62" width="210" x="20" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="kvweu" parent="weudata" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBEA;strokeColor=#D69E2E;fontColor=#744210;fontSize=10;" value="Key Vault&#xa;RBAC • purge protection&#xa;private endpoint" vertex="1">
+          <mxGeometry height="58" width="210" x="20" y="194" as="geometry" />
+        </mxCell>
+        <mxCell id="ai" parent="weuvnet" style="swimlane;html=1;startSize=25;rounded=1;fillColor=#FFF5F7;strokeColor=#D53F8C;fontColor=#702459;fontStyle=1;horizontal=1;" value="AI OPERATIONS ASSISTANT — WEU ONLY" vertex="1">
+          <mxGeometry height="105" width="510" x="20" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="aiflow" parent="ai" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#D53F8C;fontColor=#702459;fontSize=10;" value="Admin incident context&#xa;→ API redacts telemetry + retrieves approved runbooks&#xa;→ structured recommendation + audit log" vertex="1">
+          <mxGeometry height="55" width="275" x="15" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="aoai" parent="ai" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FED7E2;strokeColor=#B83280;strokeWidth=2;fontColor=#702459;fontStyle=1;fontSize=10;" value="Private Azure OpenAI / Foundry&#xa;small EU text model&#xa;MI inference only • kill switch" vertex="1">
+          <mxGeometry height="55" width="185" x="310" y="36" as="geometry" />
+        </mxCell>
+        <mxCell id="dnszones" parent="weuvnet" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF2F7;strokeColor=#718096;fontColor=#2D3748;fontSize=10;" value="Private DNS: database • blob • vault • cognitive services" vertex="1">
+          <mxGeometry height="35" width="510" x="20" y="475" as="geometry" />
+        </mxCell>
+        <mxCell id="weuobs" parent="weuvnet" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF2F7;strokeColor=#718096;fontColor=#2D3748;fontSize=10;" value="Application Insights + diagnostics → central Log Analytics" vertex="1">
+          <mxGeometry height="32" width="510" x="20" y="525" as="geometry" />
+        </mxCell>
+        <mxCell id="swc" parent="1" style="swimlane;html=1;startSize=34;rounded=1;fillColor=#FFFDF0;strokeColor=#D69E2E;strokeWidth=2;fontColor=#744210;fontStyle=1;horizontal=1;" value="SWEDEN CENTRAL — WARM STANDBY" vertex="1">
+          <mxGeometry height="705" width="610" x="1251" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="swcvnet" parent="swc" style="swimlane;html=1;startSize=28;rounded=1;fillColor=#FFFFF0;strokeColor=#ECC94B;fontColor=#744210;fontStyle=1;horizontal=1;" value="vnet-nshop-prod-swc  10.20.0.0/16" vertex="1">
+          <mxGeometry height="575" width="570" x="20" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="swcapps" parent="swcvnet" style="swimlane;html=1;startSize=25;rounded=1;fillColor=#EBF8FF;strokeColor=#63B3ED;fontColor=#2A4365;fontStyle=1;horizontal=1;" value="App integration subnet  10.20.1.0/24" vertex="1">
+          <mxGeometry height="285" width="255" x="20" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="swcplan" parent="swcapps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6EFFF;strokeColor=#0078D4;strokeWidth=2;fontColor=#003B5C;fontStyle=1;fontSize=11;" value="Linux App Service Plan (compute only)&#xa;P1v3 • 1 warm worker&#xa;scale to 2 before traffic" vertex="1">
+          <mxGeometry height="65" width="215" x="20" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="webswc" parent="swcapps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4299E1;fontColor=#1A365D;fontSize=11;" value="Customer Web" vertex="1">
+          <mxGeometry height="45" width="100" x="20" y="125" as="geometry" />
+        </mxCell>
+        <mxCell id="apiswc" parent="swcapps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2B6CB0;strokeWidth=2;fontColor=#1A365D;fontStyle=1;fontSize=10;" value="Nordic API&#xa;disabled until SQL promotion" vertex="1">
+          <mxGeometry height="45" width="100" x="135" y="125" as="geometry" />
+        </mxCell>
+        <mxCell id="vendorswc" parent="swcapps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#805AD5;fontColor=#44337A;fontSize=11;" value="Vendor Portal" vertex="1">
+          <mxGeometry height="45" width="100" x="20" y="187" as="geometry" />
+        </mxCell>
+        <mxCell id="adminswc" parent="swcapps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E53E3E;fontColor=#742A2A;fontSize=11;" value="Admin Portal" vertex="1">
+          <mxGeometry height="45" width="100" x="135" y="187" as="geometry" />
+        </mxCell>
+        <mxCell id="miswc" parent="swcapps" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6FFFA;strokeColor=#319795;fontColor=#234E52;fontSize=10;" value="System-assigned managed identity per app" vertex="1">
+          <mxGeometry height="28" width="215" x="20" y="247" as="geometry" />
+        </mxCell>
+        <mxCell id="swcdata" parent="swcvnet" style="swimlane;html=1;startSize=25;rounded=1;fillColor=#FAF5FF;strokeColor=#B794F4;fontColor=#44337A;fontStyle=1;horizontal=1;" value="Private endpoint subnet  10.20.2.0/24" vertex="1">
+          <mxGeometry height="285" width="255" x="295" y="45" as="geometry" />
+        </mxCell>
+        <mxCell id="sqlswc" parent="swcdata" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E9D8FD;strokeColor=#805AD5;strokeWidth=2;fontColor=#44337A;fontStyle=1;fontSize=11;" value="Azure SQL secondary&#xa;GP • provisioned 2 vCore&#xa;private endpoint" vertex="1">
+          <mxGeometry height="62" width="215" x="20" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="blobswc" parent="swcdata" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6FFFA;strokeColor=#319795;fontColor=#234E52;fontSize=10;" value="Blob Storage (LRS)&#xa;critical-object replica target&#xa;private endpoint" vertex="1">
+          <mxGeometry height="62" width="215" x="20" y="118" as="geometry" />
+        </mxCell>
+        <mxCell id="kvswc" parent="swcdata" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBEA;strokeColor=#D69E2E;fontColor=#744210;fontSize=10;" value="Key Vault&#xa;independent DR secrets&#xa;private endpoint" vertex="1">
+          <mxGeometry height="58" width="215" x="20" y="194" as="geometry" />
+        </mxCell>
+        <mxCell id="drcontrol" parent="swcvnet" style="swimlane;html=1;startSize=25;rounded=1;fillColor=#FFF5F5;strokeColor=#E53E3E;fontColor=#742A2A;fontStyle=1;horizontal=1;" value="DR activation order" vertex="1">
+          <mxGeometry height="105" width="530" x="20" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="drsteps" parent="drcontrol" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E53E3E;fontColor=#742A2A;fontSize=10;fontStyle=1;" value="1 Declare + freeze → 2 Authorize failover → 3 Promote SQL → 4 Validate dependencies → 5 Scale to 2 → 6 Enable origins + smoke test → 7 Serve + reconcile" vertex="1">
+          <mxGeometry height="50" width="500" x="15" y="37" as="geometry" />
+        </mxCell>
+        <mxCell id="swcdns" parent="swcvnet" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF2F7;strokeColor=#718096;fontColor=#2D3748;fontSize=10;" value="Private DNS zones linked to SWC VNet" vertex="1">
+          <mxGeometry height="35" width="530" x="20" y="475" as="geometry" />
+        </mxCell>
+        <mxCell id="swcobs" parent="swcvnet" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF2F7;strokeColor=#718096;fontColor=#2D3748;fontSize=10;" value="Regional diagnostics → central Log Analytics" vertex="1">
+          <mxGeometry height="32" width="530" x="20" y="525" as="geometry" />
+        </mxCell>
+        <mxCell id="ops" parent="1" style="swimlane;html=1;startSize=30;rounded=1;fillColor=#F7FAFC;strokeColor=#CBD5E0;fontColor=#334E68;fontStyle=1;horizontal=1;" value="DELIVERY, OBSERVABILITY &amp; GOVERNANCE" vertex="1">
+          <mxGeometry height="180" width="1820" x="40" y="840" as="geometry" />
+        </mxCell>
+        <mxCell id="github" parent="ops" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF2F7;strokeColor=#4A5568;fontColor=#1A202C;fontStyle=1;fontSize=11;" value="GitHub Actions&#xa;OIDC federation • protected environment&#xa;pinned actions • approvals" vertex="1">
+          <mxGeometry height="80" width="260" x="25" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="iac" parent="ops" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF8FF;strokeColor=#3182CE;fontColor=#1A365D;fontSize=11;" value="Bicep modules&#xa;shared + regional deployments&#xa;no secrets in parameters" vertex="1">
+          <mxGeometry height="80" width="230" x="320" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="law" parent="ops" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6FFFA;strokeColor=#319795;fontColor=#234E52;fontStyle=1;fontSize=11;" value="Log Analytics + Application Insights&#xa;structured logs • distributed traces&#xa;dashboards • alerts • action group" vertex="1">
+          <mxGeometry height="80" width="310" x="590" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="security" parent="ops" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF5F5;strokeColor=#E53E3E;fontColor=#742A2A;fontSize=11;" value="Security &amp; governance&#xa;Azure Policy • RBAC groups • resource locks&#xa;audit logs • quarterly access review" vertex="1">
+          <mxGeometry height="80" width="290" x="940" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="objectrep" parent="ops" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAF5FF;strokeColor=#805AD5;fontColor=#44337A;fontStyle=1;fontSize=11;" value="Data protection&#xa;SQL failover group: RPO ≤15 min&#xa;critical Blob object replication&#xa;RTO ≤60 min" vertex="1">
+          <mxGeometry height="80" width="280" x="1270" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="thirdparty" parent="ops" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBEA;strokeColor=#D69E2E;fontColor=#744210;fontSize=11;" value="External providers&#xa;Payment • email/SMS • shipping&#xa;SQL transactional outbox + idempotency" vertex="1">
+          <mxGeometry height="80" width="205" x="1590" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="identity" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#D69E2E;dashed=1;startArrow=open;endArrow=open;fontColor=#744210;fontSize=9;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.35;entryX=0;entryY=0.5;" target="customer" value="Sign-in request">
+          <mxGeometry relative="1" x="-0.5549" y="-10" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="-10" y="443.03" />
+              <mxPoint x="-10" y="197.48" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Lem40g0zCwCAQnNen0jZ-8" connectable="0" parent="e4" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=7;" value="&lt;font style=&quot;color: rgb(35, 181, 255);&quot;&gt;ID / access token&amp;nbsp;&lt;/font&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.5389" y="1" as="geometry">
+            <mxPoint x="31" y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#D69E2E;dashed=1;startArrow=open;endArrow=open;exitX=0;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="10" y="462.53" />
+              <mxPoint x="10" y="280.02" />
+            </Array>
+            <mxPoint x="65" y="462.5" as="sourcePoint" />
+            <mxPoint x="65" y="279.9999999999999" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Lem40g0zCwCAQnNen0jZ-10" connectable="0" parent="e5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];strokeColor=#9F7AEA;fontSize=8;" value="&lt;span style=&quot;color: rgb(159, 122, 234);&quot;&gt;ID / access token&lt;/span&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.4793" y="-1" as="geometry">
+            <mxPoint x="19" y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#D69E2E;dashed=1;startArrow=open;endArrow=open;entryX=0;entryY=0.5;fontColor=#E53E3E;" target="employee" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="110" y="530" />
+              <mxPoint x="50" y="530" />
+              <mxPoint x="50" y="350" />
+            </Array>
+            <mxPoint x="110" y="500" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Lem40g0zCwCAQnNen0jZ-11" connectable="0" parent="e6" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontColor=#E53E3E;fontSize=7;" value="&lt;span style=&quot;color: rgb(229, 62, 62);&quot;&gt;Access token + roles&lt;/span&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.5167" y="-1" as="geometry">
+            <mxPoint y="-14" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Lem40g0zCwCAQnNen0jZ-13" connectable="0" parent="e6" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=8;" value="&lt;span style=&quot;color: rgb(255, 128, 0);&quot;&gt;Sign-in + MFA&lt;/span&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.281" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="dns" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#0078D4;strokeWidth=2;endArrow=block;endFill=1;" target="afd">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#38A169;strokeWidth=3;endArrow=block;endFill=1;fontColor=#22543D;fontStyle=1;fontSize=10;labelBackgroundColor=none;labelBorderColor=#9AE6B4;entryX=0;entryY=0.45;" value="">
+          <mxGeometry relative="1" x="0.0378" y="-20" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="610" y="283" />
+              <mxPoint x="610" y="287" />
+              <mxPoint x="670" y="287" />
+            </Array>
+            <mxPoint x="565" y="283" as="sourcePoint" />
+            <mxPoint x="670" y="330.2500000000002" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="1" source="originlock" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=light-dark(#0d0d0d, #8f5f00);strokeWidth=2;dashed=1;endArrow=block;endFill=1;fontColor=#744210;fontStyle=1;fontSize=10;labelBackgroundColor=#FFFFFF;labelBorderColor=#F6E05E;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" value="Access restrictions enforced">
+          <mxGeometry relative="1" x="-0.0878" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="610" y="488.78" />
+              <mxPoint x="610" y="88" />
+              <mxPoint x="1235" y="88" />
+              <mxPoint x="1235" y="400" />
+              <mxPoint x="1290" y="400" />
+            </Array>
+            <mxPoint x="570" y="270.02" as="sourcePoint" />
+            <mxPoint x="1290" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="apiweu" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#2B6CB0;strokeWidth=2;endArrow=block;endFill=1;" target="sqlweu">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="920" y="330" />
+              <mxPoint x="920" y="268" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="1" source="apiweu" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#319795;strokeWidth=2;endArrow=block;endFill=1;" target="blobweu">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="1" source="apiweu" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#D69E2E;strokeWidth=2;endArrow=block;endFill=1;" target="kvweu">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="910.03" y="350" />
+              <mxPoint x="910.03" y="360" />
+              <mxPoint x="920.03" y="360" />
+              <mxPoint x="920.03" y="418" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#D53F8C;strokeWidth=2;endArrow=block;endFill=1;fontColor=#702459;fontSize=9;labelBackgroundColor=#FFFFFF;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" target="ai" value="REDACTED CONTEXT">
+          <mxGeometry relative="1" x="0.15" y="-8" as="geometry">
+            <Array as="points">
+              <mxPoint x="930.05" y="342.53" />
+              <mxPoint x="930.05" y="470" />
+              <mxPoint x="1052.47" y="470" />
+            </Array>
+            <mxPoint x="891" y="342.48275862068976" as="sourcePoint" />
+            <mxPoint x="1060" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e13b" edge="1" parent="1" source="aiflow" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#D53F8C;strokeWidth=2;startArrow=open;endArrow=block;endFill=1;fontColor=#702459;fontSize=9;labelBackgroundColor=#FFFFFF;" target="aoai" value="MI INFERENCE / STRUCTURED RESPONSE">
+          <mxGeometry relative="1" y="-26" as="geometry">
+            <mxPoint x="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e14" edge="1" parent="1" source="apiswc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#2B6CB0;strokeWidth=2;endArrow=block;endFill=1;" target="sqlswc">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1560" y="342.53" />
+              <mxPoint x="1560" y="280" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e15" edge="1" parent="1" source="apiswc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#319795;strokeWidth=2;endArrow=block;endFill=1;" target="blobswc">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1570" y="330" />
+              <mxPoint x="1570" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e16" edge="1" parent="1" source="apiswc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#D69E2E;strokeWidth=2;endArrow=block;endFill=1;" target="kvswc">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1540" y="342.53" />
+              <mxPoint x="1540" y="410" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="appcall1" edge="1" parent="1" source="webweu" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#2B6CB0;endArrow=block;endFill=1;fontColor=#1A365D;fontSize=8;labelBackgroundColor=#FFFFFF;" target="apiweu" value="HTTPS">
+          <mxGeometry relative="1" y="-8" as="geometry" />
+        </mxCell>
+        <mxCell id="appcall3" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#C53030;endArrow=block;endFill=1;fontColor=#742A2A;fontSize=8;labelBackgroundColor=none;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" value="AUTHORIZED ADMIN + AI REQUEST">
+          <mxGeometry relative="1" x="0.4118" y="-36" as="geometry">
+            <mxPoint as="offset" />
+            <mxPoint x="839.9999999999998" y="382" as="sourcePoint" />
+            <mxPoint x="839.9999999999998" y="365" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="appcall4" edge="1" parent="1" source="webswc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#2B6CB0;endArrow=block;endFill=1;" target="apiswc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="appcall5" edge="1" parent="1" source="vendorswc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#805AD5;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" target="apiswc">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1420" y="404.53" />
+              <mxPoint x="1420" y="380" />
+              <mxPoint x="1450" y="380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="appcall6" edge="1" parent="1" source="adminswc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#C53030;endArrow=block;endFill=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" target="apiswc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e17" edge="1" parent="1" source="sqlweu" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#805AD5;strokeWidth=3;dashed=1;endArrow=block;endFill=1;fontColor=#44337A;fontStyle=1;fontSize=10;labelBackgroundColor=#FFFFFF;labelBorderColor=#B794F4;exitX=1;exitY=0.35;entryX=0;entryY=0.35;" target="sqlswc" value="SQL FAILOVER GROUP">
+          <mxGeometry relative="1" y="-12" as="geometry">
+            <Array as="points">
+              <mxPoint x="1230" y="258.73" />
+              <mxPoint x="1230" y="178" />
+              <mxPoint x="1560" y="178" />
+              <mxPoint x="1560" y="258.73" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e18" edge="1" parent="1" source="blobweu" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#319795;strokeWidth=2;dashed=1;endArrow=block;endFill=1;fontColor=#234E52;fontSize=10;labelBackgroundColor=#FFFFFF;labelBorderColor=#81E6D9;exitX=1;exitY=0.65;entryX=0;entryY=0.65;" target="blobswc" value="CRITICAL BLOB REPLICATION">
+          <mxGeometry relative="1" y="12" as="geometry">
+            <Array as="points">
+              <mxPoint x="1160" y="330" />
+              <mxPoint x="1190" y="330" />
+              <mxPoint x="1190" y="190" />
+              <mxPoint x="1550" y="190" />
+              <mxPoint x="1550" y="353.33" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e19" edge="1" parent="1" source="github" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4A5568;strokeWidth=2;dashed=1;endArrow=block;endFill=1;" target="iac">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e20" edge="1" parent="1" source="iac" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4A5568;strokeWidth=2;dashed=1;endArrow=block;endFill=1;fontColor=#2D3748;fontSize=10;labelBackgroundColor=#FFFFFF;labelBorderColor=#A0AEC0;exitX=1;exitY=0.25;entryX=0;entryY=0.85;" target="weu" value="OIDC: INFRA + APP DEPLOY">
+          <mxGeometry relative="1" x="-0.15" y="-12" as="geometry">
+            <Array as="points">
+              <mxPoint x="615" y="910" />
+              <mxPoint x="615" y="700" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e21" edge="1" parent="1" source="iac" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4A5568;strokeWidth=2;dashed=1;endArrow=block;endFill=1;fontColor=#2D3748;fontSize=9;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.75;" value="OIDC: DR DEPLOY">
+          <mxGeometry relative="1" x="0.1" y="-10" as="geometry">
+            <Array as="points">
+              <mxPoint x="610" y="950" />
+              <mxPoint x="610" y="1000" />
+              <mxPoint x="1290" y="1000" />
+              <mxPoint x="1290" y="840" />
+              <mxPoint x="1320" y="840" />
+            </Array>
+            <mxPoint x="1320" y="810" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e22" edge="1" parent="1" source="weuobs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#319795;strokeWidth=2;dashed=1;endArrow=block;endFill=1;" target="law">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e23" edge="1" parent="1" source="swcobs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#319795;strokeWidth=2;dashed=1;endArrow=block;endFill=1;" target="law">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1555" y="750" />
+              <mxPoint x="810" y="750" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e24" edge="1" parent="1" source="apiweu" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#D69E2E;strokeWidth=2;dashed=1;endArrow=block;endFill=1;fontColor=#744210;fontSize=10;labelBackgroundColor=#FFFFFF;labelBorderColor=#F6E05E;exitX=1;exitY=0.8;entryX=1;entryY=0.5;" target="thirdparty" value="HTTPS PROVIDER APIs">
+          <mxGeometry relative="1" x="0.25" y="-12" as="geometry">
+            <Array as="points">
+              <mxPoint x="890" y="310" />
+              <mxPoint x="1880" y="310" />
+              <mxPoint x="1880" y="930" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#CBD5E0;fontColor=#486581;fontSize=10;align=left;spacingLeft=10;" value="LEGEND   ━ Customer/runtime traffic   ┄ Control/identity/deployment   Green = active   Amber = standby   Purple = data   Pink = AI" vertex="1">
+          <mxGeometry height="25" width="1820" x="40" y="1035" as="geometry" />
+        </mxCell>
+        <mxCell id="Lem40g0zCwCAQnNen0jZ-16" edge="1" parent="1" style="endArrow=none;html=1;rounded=1;exitX=0.989;exitY=0.678;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;curved=0;" target="customer" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="270" y="363.18" />
+              <mxPoint x="270" y="340" />
+              <mxPoint x="270" y="197.5" />
+            </Array>
+            <mxPoint x="254.99999999999986" y="363.18000000000006" as="sourcePoint" />
+            <mxPoint x="257.09000000000003" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Lem40g0zCwCAQnNen0jZ-20" edge="1" parent="1" style="endArrow=classic;html=1;rounded=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;curved=0;" target="dns" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="241" />
+              <mxPoint x="300" y="192.5" />
+            </Array>
+            <mxPoint x="270" y="241" as="sourcePoint" />
+            <mxPoint x="345.65999999999985" y="189" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Lem40g0zCwCAQnNen0jZ-21" connectable="0" parent="Lem40g0zCwCAQnNen0jZ-20" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBackgroundColor=none;fontColor=#330000;" value="&lt;font style=&quot;font-size: 7px;&quot;&gt;DNS Resolution&lt;/font&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.1201" y="-1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Lem40g0zCwCAQnNen0jZ-19" edge="1" parent="1" source="vendor" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="255" y="274.6" />
+            </Array>
+            <mxPoint x="270" y="274.64" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Lem40g0zCwCAQnNen0jZ-30" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;span style=&quot;text-wrap-mode: nowrap;&quot;&gt;&lt;font style=&quot;font-size: 7px;&quot;&gt;HTTPS request&lt;/font&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry height="32" width="60" x="273" y="256" as="geometry" />
+        </mxCell>
+        <mxCell id="Lem40g0zCwCAQnNen0jZ-32" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF8FF;strokeColor=#3182CE;fontColor=#1A365D;fontSize=11;align=center;" value="&lt;div&gt;&lt;span style=&quot;color: rgb(34, 84, 61); text-wrap-mode: nowrap; background-color: transparent;&quot;&gt;&lt;font style=&quot;&quot;&gt;4 PRIMARY ROUTES → MATCHING APP ORIGINS&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;Front Door&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;├── www route ─────→ WEU Customer Web&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;├── api route ─────→ WEU Nordic API&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;├── vendor route ──→ WEU Vendor Portal&lt;/div&gt;&lt;div style=&quot;text-align: left;&quot;&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;└── admin route ───→ WEU Admin Portal&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(26, 54, 93), rgb(172, 196, 230));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="105" width="300" x="290" y="641" as="geometry" />
+        </mxCell>
+        <mxCell id="Lem40g0zCwCAQnNen0jZ-34" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="640" y="290" as="sourcePoint" />
+            <mxPoint x="560" y="640" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Lem40g0zCwCAQnNen0jZ-35" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=light-dark(#0d0d0d, #8f5f00);strokeWidth=2;dashed=1;endArrow=block;endFill=1;fontColor=#744210;fontStyle=1;fontSize=10;labelBackgroundColor=#FFFFFF;labelBorderColor=#F6E05E;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" value="Disabled until declared failover">
+          <mxGeometry relative="1" x="0.0843" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="600" y="271" />
+              <mxPoint x="600" y="60" />
+              <mxPoint x="1232.54" y="60" />
+              <mxPoint x="1232.54" y="320" />
+              <mxPoint x="1287.54" y="320" />
+            </Array>
+            <mxPoint x="562.5" y="271" as="sourcePoint" />
+            <mxPoint x="1287.5" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Lem40g0zCwCAQnNen0jZ-38" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF8FF;strokeColor=#3182CE;fontColor=#1A365D;fontSize=11;align=center;" value="Mobile clients connect directly through Front Door’s API route:&lt;div&gt;Customer/Vendor Mobile → Front Door → Nordic API&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="325" x="265" y="753" as="geometry" />
+        </mxCell>
+        <mxCell id="Lem40g0zCwCAQnNen0jZ-42" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBEA;strokeColor=#D69E2E;fontColor=#744210;fontSize=11;" value="&lt;div&gt;privatelink.database.windows.net&lt;/div&gt;&lt;div&gt;privatelink.blob.core.windows.net&lt;/div&gt;&lt;div&gt;privatelink.vaultcore.azure.net&lt;/div&gt;&lt;div&gt;privatelink.openai.azure.com&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="205" x="1950" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="Lem40g0zCwCAQnNen0jZ-43" edge="1" parent="1" source="dnszones" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;dashed=1;dashPattern=1 1;" target="Lem40g0zCwCAQnNen0jZ-42" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="1230" y="642.5" />
+              <mxPoint x="1230" y="780" />
+            </Array>
+            <mxPoint x="1620" y="800" as="sourcePoint" />
+            <mxPoint x="1670" y="750" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
